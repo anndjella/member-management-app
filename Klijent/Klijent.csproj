@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8DBC60A6-2CEE-4DE7-BD67-5E1E8BD9BD5A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Klijent</RootNamespace>
+    <AssemblyName>Klijent</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmDodajClana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDodajClana.Designer.cs">
+      <DependentUpon>FrmDodajClana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDodajViseOdlazaka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDodajViseOdlazaka.Designer.cs">
+      <DependentUpon>FrmDodajViseOdlazaka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlavnaForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlavnaForma.Designer.cs">
+      <DependentUpon>GlavnaForma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIKontroler\ClanoviKontroler.cs" />
+    <Compile Include="GUIKontroler\DetaljiRacunaKontroler.cs" />
+    <Compile Include="GUIKontroler\DodajClanaKontroler.cs" />
+    <Compile Include="GUIKontroler\DodajOdlazakKontroler.cs" />
+    <Compile Include="GUIKontroler\DodajVišeOdlazakaKontroler.cs" />
+    <Compile Include="GUIKontroler\RacunKontroler.cs" />
+    <Compile Include="GUIKontroler\Koordinator.cs" />
+    <Compile Include="GUIKontroler\LoginGUIKontroler.cs" />
+    <Compile Include="Komunikacija.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserKontrole\UCClanovi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserKontrole\UCClanovi.Designer.cs">
+      <DependentUpon>UCClanovi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserKontrole\UCDetaljiRacuna.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserKontrole\UCDetaljiRacuna.Designer.cs">
+      <DependentUpon>UCDetaljiRacuna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserKontrole\UCDodajDolazak.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserKontrole\UCDodajDolazak.Designer.cs">
+      <DependentUpon>UCDodajDolazak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserKontrole\UCRacun.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserKontrole\UCRacun.Designer.cs">
+      <DependentUpon>UCRacun.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FrmDodajClana.resx">
+      <DependentUpon>FrmDodajClana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDodajViseOdlazaka.resx">
+      <DependentUpon>FrmDodajViseOdlazaka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlavnaForma.resx">
+      <DependentUpon>GlavnaForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UserKontrole\UCClanovi.resx">
+      <DependentUpon>UCClanovi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserKontrole\UCDetaljiRacuna.resx">
+      <DependentUpon>UCDetaljiRacuna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserKontrole\UCDodajDolazak.resx">
+      <DependentUpon>UCDodajDolazak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserKontrole\UCRacun.resx">
+      <DependentUpon>UCRacun.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBBroker\DBBroker.csproj">
+      <Project>{F5FCEAB6-F7E6-47F5-BA8C-1FD5568F7D26}</Project>
+      <Name>DBBroker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zajednicko\Zajednicko.csproj">
+      <Project>{41F41C6C-8A10-4D71-905E-0E3880F4B3CF}</Project>
+      <Name>Zajednicko</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
