@@ -126,14 +126,16 @@ namespace Klijent.GUIKontroler
                     ra.Mesec =(Mesec) DateTime.Now.Month;
                     ra.Godina =DateTime.Now.Year;
                   Odgovor odg=  Komunikacija.Instance.IzvrsiFju(Operacija.PronadjiRacune,ra);
-                    if (((List<Racun>)odg.Rezultat).Count == 0)
-                    {
-                        DodajClanaKontroler.Instance.PrikaziDetaljeOClanu(izabraniClan);
-                    }
-                    else
+                    if (((List<Racun>)odg.Rezultat).Count != 0
+                        && ((List<Racun>)odg.Rezultat).Any(r => r.Godina == ra.Godina)
+                        && ((List<Racun>)odg.Rezultat).Any(r => r.Mesec == ra.Mesec))
                     {
                         MessageBox.Show("Ne možete promeniti promeniti podatke o članu kom je već kreirana " +
                             "članarina za ovaj mesec!");
+                    }
+                    else
+                    {
+                        DodajClanaKontroler.Instance.PrikaziDetaljeOClanu(izabraniClan);
                     }
                 }
 
@@ -183,9 +185,7 @@ namespace Klijent.GUIKontroler
                       Komunikacija.Instance.IzvrsiFju(Operacija.VratiKonkretneClanove, c).Rezultat;
                     if (odabraniClanovi.Count == 0)
                     {
-                        kontrolaClanovi.DgvClanovi.DataSource = odabraniClanovi;
-                        MessageBox.Show("Sistem ne može da nađe članove po zadatoj vrednosti");
-                       
+                        kontrolaClanovi.DgvClanovi.DataSource = odabraniClanovi;                   
 
                     }
                     else
@@ -201,7 +201,6 @@ namespace Klijent.GUIKontroler
                                 }
                             }
                         }
-                        MessageBox.Show("Sistem je našao članove po zadatoj vrednosti.");
                     }
                 }
                 else

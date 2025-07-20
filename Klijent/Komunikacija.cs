@@ -32,28 +32,42 @@ namespace Klijent
             }
         }
         private Komunikacija() { }
-        public void PoveziSaServerom()
+        public bool PoveziSaServerom(int maxTry=3,int delayMs=1000)
         {
-            try
+            int attempt=0;
+            while (attempt<maxTry)
             {
-                klijentskiSoket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                klijentskiSoket.Connect("127.0.0.1", 9999);
-                posiljalac = new Posiljalac(klijentskiSoket);
-                primalac = new Primalac(klijentskiSoket);
+                try
+                {
+                    klijentskiSoket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    klijentskiSoket.Connect("127.0.0.1", 9999);
+                    posiljalac = new Posiljalac(klijentskiSoket);
+                    primalac = new Primalac(klijentskiSoket);
+                    return true;
+                }
+                catch (SocketException)
+                {
+                    attempt++;
+                    if (attempt == maxTry)
+                        return false;
+                    Task.Delay(delayMs).Wait();
+                    //Debug.WriteLine(">>>" + ex.Message.ToString());
+                } 
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(">>>"+ex.Message.ToString());
-            }
+            return false;
         }
         internal Odgovor IzvrsiFju(Operacija op,IEntitet argument = null)
         {
-            Zahtev zahtev = new Zahtev();
-            zahtev.Operacija = op;
-            zahtev.Argument = argument;
-            posiljalac.Posalji(zahtev);
-            Odgovor odgovor = (Odgovor)primalac.Primi();
-            return odgovor;
+            if (posiljalac == null)
+                throw new Exception("Niste povezani sa serverom!");
+           
+                Zahtev zahtev = new Zahtev();
+                zahtev.Operacija = op;
+                zahtev.Argument = argument;
+                posiljalac.Posalji(zahtev);
+                Odgovor odgovor = (Odgovor)primalac.Primi();
+                return odgovor;
+          
         }
         internal Odgovor IzvrsiFjuSacuvajVise(Operacija op, List<Odlazak> argument)
         {

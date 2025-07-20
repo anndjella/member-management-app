@@ -68,7 +68,12 @@ namespace Klijent.GUIKontroler
                     List<Odlazak> odabraniOdlasci = odlasciZaKonkretnogClanaUIzabranomMesecu.Where(o=>o.DatumOdlaska.Day==broj).ToList();
                     if (odabraniOdlasci.Count == 0)
                     {
-                        MessageBox.Show("Sistem ne može da nađe odlaske po zadatoj vrednosti");
+                        ucDetaljiRacuna.DgvDolasci.ClearSelection();
+                        foreach (DataGridViewRow red in ucDetaljiRacuna.DgvDolasci.Rows)
+                        {
+                            red.Visible = false; // ponovo ih pokaži
+                        }
+                        //MessageBox.Show("Sistem ne može da nađe odlaske po zadatoj vrednosti");
                     }
                     else
                     {
@@ -85,7 +90,7 @@ namespace Klijent.GUIKontroler
                                 red.Visible = false;
                             }
                         }
-                       MessageBox.Show("Sistem je našao odlaske po zadatoj vrednosti.");
+                       //MessageBox.Show("Sistem je našao odlaske po zadatoj vrednosti.");
                     }
                 }
                 else

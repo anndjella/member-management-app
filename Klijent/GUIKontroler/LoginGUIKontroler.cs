@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zajednicko.Domain;
 using Zajednicko.Komunikacija;
+using System.Net.Sockets;
 
 
 namespace Klijent.GUIKontroler
@@ -32,7 +33,17 @@ namespace Klijent.GUIKontroler
         }
         internal void PrikaziFormu()
         {
-            Komunikacija.Instance.PoveziSaServerom();
+            //Komunikacija.Instance.PoveziSaServerom();
+            bool uspesnoPovezano = Komunikacija.Instance.PoveziSaServerom();
+            if (!uspesnoPovezano)
+            {
+                MessageBox.Show("Nije moguće uspostaviti vezu sa serverom. Molimo pokrenite server i pokušajte ponovo.");
+                Environment.Exit(0);
+                return; 
+            }
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -42,7 +53,10 @@ namespace Klijent.GUIKontroler
         }
         internal void Login(object sender, EventArgs e)
         {
-            if (Validacija())
+            if (!Validacija())
+                return;
+
+            try
             {
                 Operater operater = new Operater();
                 operater.Email = frmLogin.TxtEmail.Text;
@@ -76,6 +90,10 @@ namespace Klijent.GUIKontroler
                         " "+ op.Prezime+"!");
                     Koordinator.Instance.PrikaziGlavnuFormu(op);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greska!" +ex.Message);
             }
         }
         private bool Validacija()
