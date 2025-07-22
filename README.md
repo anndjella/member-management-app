@@ -1,17 +1,65 @@
-_**Fitness Center Management Application**_
+# Fitness Studio Management - Client-Server Application
 
-**Description**
+This is a client-server application for managing fitness studio members, monthly invoices, and attendances. The app allows multiple operators to log in and manage different aspects of the studio.
 
-One of the main functionalities of the application is the ability to create new fitness center members. The operator can easily enter data about new members, and it is possible to search for existing members, which significantly saves time and energy. If a member changes their phone number, last name, or any other personal information, it is possible to change their data, and if a member is no longer interested in the fitness center, there is also the possibility of deleting their membership.
+## How to Set Up
 
-**Member Categories**
+### 1. Import the Database
 
-There are different categories that members can belong to, such as employed, retirees, children, and students. This allows members to receive discounts depending on which category they belong to.
+1. Open **SQL Server Management Studio (SSMS)**.
+2. Open the SQL script (e.g., with Notepad), select and copy the entire content.
+3. Paste the script into a new query window in SSMS.
+4. Run the script to create the database.
 
-**Monthly Bills**
+After running the script, a database named `FitnessStudioDB` will be created. No changes to the connection string are needed - it is located in `App.config`.
 
-Members have monthly bills. There is a possibility for members to attend multiple group programs per day, so the bill amount increases or decreases depending on whether the attendance at the group program is paid or not. There is a possibility of retroactive payment, but if a member does not pay for all their attendances until the last day of the month, funds will be deducted from their card.
+---
 
-**Benefits**
+## How to Run the Application
 
-This application provides a complete and comprehensive system for managing members and group programs of the fitness center. It provides the center operator with a powerful tool for organizing and tracking all aspects of exercise in their center, and provides members with quick and efficient service.
+1. Start the **Server** project first.
+   - Press the **'Start server'** button.
+2. Then start the **Client** project.
+   - Use the default admin credentials already filled in the placeholders to log in.
+
+---
+
+## Application Workflow
+
+### Members Management
+
+- After login, click on **"Members"**.
+- All existing members will be listed.
+- For each member, you can:
+  - Edit their information
+  - Search members
+  - Delete members
+
+### Monthly Invoice and Attendance
+
+- Before logging any attendance for a member, you must create an invoice for the current month.
+- The **current month is automatically generated**.
+- Once the invoice is created, you can add attendances (e.g., Pilates, Full Body Workout, etc.).
+
+### Pricing and Categories
+
+- Attendance price depends on the member’s category (e.g., Student, Employed, etc.)
+
+- Each category has its own discount applied.
+
+### Payment Handling
+
+- The operator chooses whether the attendance is **paid** or **unpaid**.
+- Paid attendances are excluded from the final monthly invoice.
+- Unpaid attendances are included in the invoice.
+
+### Attendance Constraints
+
+- Attendances from previous months **cannot** be entered — only for the **current month**.
+- Multiple attendances can be added at once.
+
+### Invoice Details
+
+- Click **"Show details of the selected invoice"** to list all attendances for the selected month.
+- The payment status of attendances can be changed later if payment occurs.
+- This update is only allowed for **current month invoices**.
