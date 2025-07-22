@@ -51,7 +51,7 @@ namespace Klijent
             this.btnDodajClana.Name = "btnDodajClana";
             this.btnDodajClana.Size = new System.Drawing.Size(134, 47);
             this.btnDodajClana.TabIndex = 21;
-            this.btnDodajClana.Text = "Dodaj člana";
+            this.btnDodajClana.Text = "Add member";
             this.btnDodajClana.UseVisualStyleBackColor = true;
             // 
             // cmbKateg
@@ -68,9 +68,9 @@ namespace Klijent
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(44, 269);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(166, 18);
+            this.label5.Size = new System.Drawing.Size(72, 18);
             this.label5.TabIndex = 19;
-            this.label5.Text = "Kategorija kojoj pripada:";
+            this.label5.Text = "Category:";
             // 
             // txtBrTel
             // 
@@ -87,9 +87,9 @@ namespace Klijent
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(44, 198);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 18);
+            this.label4.Size = new System.Drawing.Size(55, 18);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Broj telefona:";
+            this.label4.Text = "Phone:";
             // 
             // txtEmail
             // 
@@ -121,9 +121,9 @@ namespace Klijent
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(44, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 18);
+            this.label2.Size = new System.Drawing.Size(72, 18);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Prezime:";
+            this.label2.Text = "Surname:";
             // 
             // txtIme
             // 
@@ -138,9 +138,9 @@ namespace Klijent
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(44, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 18);
+            this.label1.Size = new System.Drawing.Size(52, 18);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Ime:";
+            this.label1.Text = "Name:";
             // 
             // btnSacuvajIzmene
             // 
@@ -148,7 +148,7 @@ namespace Klijent
             this.btnSacuvajIzmene.Name = "btnSacuvajIzmene";
             this.btnSacuvajIzmene.Size = new System.Drawing.Size(134, 47);
             this.btnSacuvajIzmene.TabIndex = 22;
-            this.btnSacuvajIzmene.Text = "Sačuvaj promene";
+            this.btnSacuvajIzmene.Text = "Save changes";
             this.btnSacuvajIzmene.UseVisualStyleBackColor = true;
             this.btnSacuvajIzmene.Visible = false;
             // 
@@ -158,7 +158,7 @@ namespace Klijent
             this.btnObrisi.Name = "btnObrisi";
             this.btnObrisi.Size = new System.Drawing.Size(134, 47);
             this.btnObrisi.TabIndex = 23;
-            this.btnObrisi.Text = "Obriši člana";
+            this.btnObrisi.Text = "Delete member";
             this.btnObrisi.UseVisualStyleBackColor = true;
             this.btnObrisi.Visible = false;
             // 
@@ -181,7 +181,7 @@ namespace Klijent
             this.Controls.Add(this.txtIme);
             this.Controls.Add(this.label1);
             this.Name = "FrmDodajClana";
-            this.Text = "Dodaj člana";
+            this.Text = "Add member";
             this.ResumeLayout(false);
             this.PerformLayout();
 

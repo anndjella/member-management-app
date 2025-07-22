@@ -61,9 +61,9 @@ namespace Klijent
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(36, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 18);
+            this.label1.Size = new System.Drawing.Size(49, 18);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Unesite email:";
+            this.label1.Text = "Email:";
             // 
             // label2
             // 
@@ -71,9 +71,9 @@ namespace Klijent
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(36, 102);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 18);
+            this.label2.Size = new System.Drawing.Size(79, 18);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Unesite lozinku:";
+            this.label2.Text = "Password:";
             // 
             // btnLogin
             // 
@@ -85,7 +85,7 @@ namespace Klijent
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(152, 61);
             this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "Prijavi me";
+            this.btnLogin.Text = "Log in";
             this.btnLogin.UseVisualStyleBackColor = false;
             // 
             // FrmLogin

@@ -61,9 +61,9 @@ namespace Klijent.UserKontrole
             this.lblIznos.AutoSize = true;
             this.lblIznos.Location = new System.Drawing.Point(3, 310);
             this.lblIznos.Name = "lblIznos";
-            this.lblIznos.Size = new System.Drawing.Size(138, 16);
+            this.lblIznos.Size = new System.Drawing.Size(134, 16);
             this.lblIznos.TabIndex = 1;
-            this.lblIznos.Text = "Ukupan iznos računa: ";
+            this.lblIznos.Text = "Total invoice amount:";
             this.lblIznos.Visible = false;
             // 
             // lblKrajnjiIznos
@@ -71,9 +71,9 @@ namespace Klijent.UserKontrole
             this.lblKrajnjiIznos.AutoSize = true;
             this.lblKrajnjiIznos.Location = new System.Drawing.Point(3, 359);
             this.lblKrajnjiIznos.Name = "lblKrajnjiIznos";
-            this.lblKrajnjiIznos.Size = new System.Drawing.Size(294, 16);
+            this.lblKrajnjiIznos.Size = new System.Drawing.Size(259, 16);
             this.lblKrajnjiIznos.TabIndex = 2;
-            this.lblKrajnjiIznos.Text = "Konačni iznos računa sa obračunatim popustom:";
+            this.lblKrajnjiIznos.Text = "Final invoice amount with applied discount:";
             // 
             // panel1
             // 
@@ -91,9 +91,9 @@ namespace Klijent.UserKontrole
             this.lblPretraga.AutoSize = true;
             this.lblPretraga.Location = new System.Drawing.Point(9, 3);
             this.lblPretraga.Name = "lblPretraga";
-            this.lblPretraga.Size = new System.Drawing.Size(173, 16);
+            this.lblPretraga.Size = new System.Drawing.Size(174, 16);
             this.lblPretraga.TabIndex = 6;
-            this.lblPretraga.Text = "Pretraga odlazaka po danu:";
+            this.lblPretraga.Text = "Search attendances by day:";
             // 
             // btnPretraga
             // 
@@ -101,7 +101,7 @@ namespace Klijent.UserKontrole
             this.btnPretraga.Name = "btnPretraga";
             this.btnPretraga.Size = new System.Drawing.Size(118, 53);
             this.btnPretraga.TabIndex = 5;
-            this.btnPretraga.Text = "Pretraži";
+            this.btnPretraga.Text = "Search";
             this.btnPretraga.UseVisualStyleBackColor = true;
             // 
             // txtUnos
@@ -112,7 +112,7 @@ namespace Klijent.UserKontrole
             this.txtUnos.Name = "txtUnos";
             this.txtUnos.Size = new System.Drawing.Size(313, 22);
             this.txtUnos.TabIndex = 3;
-            this.txtUnos.Text = "npr. \"3\"";
+            this.txtUnos.Text = "e.g.\"3\"";
             // 
             // UCDetaljiRacuna
             // 

@@ -41,7 +41,7 @@
             this.btnPokreniServer.Name = "btnPokreniServer";
             this.btnPokreniServer.Size = new System.Drawing.Size(115, 74);
             this.btnPokreniServer.TabIndex = 0;
-            this.btnPokreniServer.Text = "Pokreni server";
+            this.btnPokreniServer.Text = "Start server";
             this.btnPokreniServer.UseVisualStyleBackColor = true;
             this.btnPokreniServer.Click += new System.EventHandler(this.btnPokreniServer_Click);
             // 
@@ -53,7 +53,7 @@
             this.btnZaustaviServer.Name = "btnZaustaviServer";
             this.btnZaustaviServer.Size = new System.Drawing.Size(115, 74);
             this.btnZaustaviServer.TabIndex = 1;
-            this.btnZaustaviServer.Text = "Zaustavi server";
+            this.btnZaustaviServer.Text = "Stop server";
             this.btnZaustaviServer.UseVisualStyleBackColor = true;
             this.btnZaustaviServer.Visible = false;
             this.btnZaustaviServer.Click += new System.EventHandler(this.btnZaustaviServer_Click);
@@ -65,9 +65,9 @@
             this.lblStatusServera.ForeColor = System.Drawing.Color.Red;
             this.lblStatusServera.Location = new System.Drawing.Point(261, 135);
             this.lblStatusServera.Name = "lblStatusServera";
-            this.lblStatusServera.Size = new System.Drawing.Size(160, 25);
+            this.lblStatusServera.Size = new System.Drawing.Size(191, 25);
             this.lblStatusServera.TabIndex = 2;
-            this.lblStatusServera.Text = "Server je ugašen";
+            this.lblStatusServera.Text = "Server is not running";
             // 
             // FrmServer
             // 

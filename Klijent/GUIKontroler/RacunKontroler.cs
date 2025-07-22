@@ -69,11 +69,14 @@ namespace Klijent.GUIKontroler
             Clan = ClanoviKontroler.Instance.Clan;
             Racun r = new Racun();
             r.Clan = Clan;
-            ucRacun.LblIme.Text = $"{Clan.Ime} {Clan.Prezime} računi";
+            ucRacun.LblIme.Text = $"{Clan.Ime} {Clan.Prezime} invoices";
             racuni = (List<Racun>)Komunikacija.Instance.IzvrsiFju(Operacija.PronadjiRacune, r).Rezultat;
 
             ucRacun.DgvOdlasci.DataSource = new BindingList<Racun>(racuni);
             Sakrij();
+            ucRacun.DgvOdlasci.Columns["Mesec"].HeaderText = "Month";
+            ucRacun.DgvOdlasci.Columns["Godina"].HeaderText = "Year";
+            ucRacun.DgvOdlasci.Columns["Iznos"].HeaderText = "Amount";
             ucRacun.BtnDetaljiORacunu.Click += DetaljiORacunu;
             ucRacun.BtnPretraga.Click += PretragaRacuna;
             ucRacun.TxtUnos.Click += RefresujPolje;
@@ -109,7 +112,7 @@ namespace Klijent.GUIKontroler
             ucRacun.DgvOdlasci.DataSource = null;
             ucRacun.DgvOdlasci.DataSource = racuni;
             Sakrij();
-            if (!string.IsNullOrEmpty(unos) || unos.Equals("npr. \"Jul\""))
+            if (!string.IsNullOrEmpty(unos) || unos.Equals("e.g. \"July\""))
             {
                 if (okej)
                 {
@@ -139,7 +142,7 @@ namespace Klijent.GUIKontroler
                 }
                 else
                 {
-                    MessageBox.Show("Loše unet format!");
+                    MessageBox.Show("Invalid format entered!");
                 }
             }
             else
@@ -151,7 +154,7 @@ namespace Klijent.GUIKontroler
 
         private void ObavestiDaNemaRacune(object sender, EventArgs e)
         {
-            MessageBox.Show("Sistem ne može da nađe članarine za izabranog člana!");
+            MessageBox.Show("The system cannot find subscriptions for the selected!");
         }
 
         private void DetaljiORacunu(object sender, EventArgs e)
@@ -173,13 +176,13 @@ namespace Klijent.GUIKontroler
         public void InicijalicujFormuKreirajRacun(object sender, EventArgs e)
         {
             Clan = ClanoviKontroler.Instance.Clan;
-            ucRacun.LblIme.Text = $"{Clan.Ime} {Clan.Prezime} račun {((Mesec)DateTime.Now.Month).ToString()} {DateTime.Now.Year}";
+            ucRacun.LblIme.Text = $"{Clan.Ime} {Clan.Prezime} invoice {((Mesec)DateTime.Now.Month).ToString()} {DateTime.Now.Year}";
 
         }
 
         private void KreirajRacun(object sender, EventArgs e)
         {
-            DialogResult rez = MessageBox.Show("Da li ste sigurni?", "Upozorenje", MessageBoxButtons.YesNo);
+            DialogResult rez = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
             if (rez == DialogResult.Yes)
             {
                 Racun ra = new Racun();
@@ -188,7 +191,7 @@ namespace Klijent.GUIKontroler
                 bool postojiOvomesecniRacun = racuni.Any(r => r.Mesec == (Mesec)DateTime.Now.Month && r.Godina == DateTime.Now.Year);
                 if (postojiOvomesecniRacun)
                 {
-                    MessageBox.Show("Korisnik već ima kreiran račun za ovaj mesec!");
+                    MessageBox.Show("The user already has an invoice created for this month!");
                 }
                 else
                 {
@@ -209,7 +212,7 @@ namespace Klijent.GUIKontroler
             Odgovor odg = Komunikacija.Instance.IzvrsiFju(Operacija.DodajRacun, racun);
             if (odg.Exception == null)
             {
-                MessageBox.Show($"Sistem je zapamtio račun");
+                MessageBox.Show($"The system has saved the invoice.");
             }
         }
 

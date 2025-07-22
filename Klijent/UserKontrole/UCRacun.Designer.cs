@@ -65,7 +65,7 @@ namespace Klijent.UserKontrole
             this.btnKreirajRacun.Name = "btnKreirajRacun";
             this.btnKreirajRacun.Size = new System.Drawing.Size(172, 56);
             this.btnKreirajRacun.TabIndex = 1;
-            this.btnKreirajRacun.Text = "Kreiraj račun";
+            this.btnKreirajRacun.Text = "Generate invoice";
             this.btnKreirajRacun.UseVisualStyleBackColor = true;
             // 
             // lblIme
@@ -94,7 +94,7 @@ namespace Klijent.UserKontrole
             this.btnDetaljiORacunu.Name = "btnDetaljiORacunu";
             this.btnDetaljiORacunu.Size = new System.Drawing.Size(184, 64);
             this.btnDetaljiORacunu.TabIndex = 4;
-            this.btnDetaljiORacunu.Text = "Prikaži detalje o izabranom računu";
+            this.btnDetaljiORacunu.Text = "Show details of the selected invoice";
             this.btnDetaljiORacunu.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -113,9 +113,9 @@ namespace Klijent.UserKontrole
             this.lblPretraga.AutoSize = true;
             this.lblPretraga.Location = new System.Drawing.Point(9, 3);
             this.lblPretraga.Name = "lblPretraga";
-            this.lblPretraga.Size = new System.Drawing.Size(176, 16);
+            this.lblPretraga.Size = new System.Drawing.Size(163, 16);
             this.lblPretraga.TabIndex = 6;
-            this.lblPretraga.Text = "Pretraga računa po mesecu:";
+            this.lblPretraga.Text = "Search invoices by month:";
             // 
             // btnPretraga
             // 
@@ -123,7 +123,7 @@ namespace Klijent.UserKontrole
             this.btnPretraga.Name = "btnPretraga";
             this.btnPretraga.Size = new System.Drawing.Size(87, 41);
             this.btnPretraga.TabIndex = 5;
-            this.btnPretraga.Text = "Pretraži";
+            this.btnPretraga.Text = "Search";
             this.btnPretraga.UseVisualStyleBackColor = true;
             // 
             // txtUnos
@@ -134,7 +134,7 @@ namespace Klijent.UserKontrole
             this.txtUnos.Name = "txtUnos";
             this.txtUnos.Size = new System.Drawing.Size(313, 22);
             this.txtUnos.TabIndex = 3;
-            this.txtUnos.Text = "npr. \"Jul\"";
+            this.txtUnos.Text = "e.g. \"July\"";
             // 
             // UCRacun
             // 

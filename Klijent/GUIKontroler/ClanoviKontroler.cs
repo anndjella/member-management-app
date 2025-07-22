@@ -72,7 +72,7 @@ namespace Klijent.GUIKontroler
             }
             else
             {
-                MessageBox.Show("Morate izabrati red u tabeli.");
+                MessageBox.Show("You must select a row in the table.");
             }
         }
 
@@ -90,9 +90,9 @@ namespace Klijent.GUIKontroler
         {
             if (kontrolaClanovi.DgvClanovi.SelectedRows.Count > 0)
             {
-              //  DialogResult rezultat = MessageBox.Show("Da li ste sigurni?", "Upozorenje", MessageBoxButtons.YesNo);
-               // if (rezultat == DialogResult.Yes)
-               // {
+                DialogResult rezultat = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
+                if (rezultat == DialogResult.Yes)
+                {
                     DataGridViewRow red = kontrolaClanovi.DgvClanovi.SelectedRows[0];
                     Clan izabraniClan = red.DataBoundItem as Clan;
                     if (izabraniClan != null)
@@ -101,14 +101,14 @@ namespace Klijent.GUIKontroler
                        DodajClanaKontroler.Instance.PrikaziDetaljeOClanuBrisanje(izabraniClan);
                       
                         Komunikacija.Instance.IzvrsiFju(Operacija.IzbrisiClana, izabraniClan);
-                       // MessageBox.Show($"Član {izabraniClan.Ime} {izabraniClan.Prezime} je izbrisan");
+                        MessageBox.Show($"Mmber {izabraniClan.Ime} {izabraniClan.Prezime} is deleted.");
                         ClanObrisan?.Invoke(this, EventArgs.Empty);
                     }
-                //}
+                }
             }
             else
             {
-                MessageBox.Show("Morate izabrati red u tabeli.");
+                MessageBox.Show("You must select a row in the table.");
             }
         }
 
@@ -130,8 +130,7 @@ namespace Klijent.GUIKontroler
                         && ((List<Racun>)odg.Rezultat).Any(r => r.Godina == ra.Godina)
                         && ((List<Racun>)odg.Rezultat).Any(r => r.Mesec == ra.Mesec))
                     {
-                        MessageBox.Show("Ne možete promeniti promeniti podatke o članu kom je već kreirana " +
-                            "članarina za ovaj mesec!");
+                        MessageBox.Show("You cannot edit the information of a member who already has a membership created for this month!");
                     }
                     else
                     {
@@ -142,7 +141,7 @@ namespace Klijent.GUIKontroler
             }
             else
             {
-                MessageBox.Show("Morate izabrati člana!");
+                MessageBox.Show("You must select a member!");
             }
         }
 
@@ -159,7 +158,10 @@ namespace Klijent.GUIKontroler
             clanovi = clanovi.OrderBy(c => c.Prezime).ToList();
             kontrolaClanovi.DgvClanovi.DataSource = new BindingList<Clan>(clanovi);
             kontrolaClanovi.DgvClanovi.Columns["idclana"].Visible = false;
-
+            kontrolaClanovi.DgvClanovi.Columns["Ime"].HeaderText = "Name";
+            kontrolaClanovi.DgvClanovi.Columns["Prezime"].HeaderText = "Surname";
+            kontrolaClanovi.DgvClanovi.Columns["BrojTelefona"].HeaderText = "Phone";
+            kontrolaClanovi.DgvClanovi.Columns["Kategorija"].HeaderText = "Category";
             kontrolaClanovi.DgvClanovi.Columns["imetabele"].Visible = false;
             kontrolaClanovi.DgvClanovi.Columns["vrednosti"].Visible = false;
             kontrolaClanovi.DgvClanovi.Columns["UslovZaWhereVratiSve"].Visible = false;
@@ -205,7 +207,7 @@ namespace Klijent.GUIKontroler
                 }
                 else
                 {
-                    MessageBox.Show("Unesite samo slova!");
+                    MessageBox.Show("Please enter letters only!");
                 }
             }
             else

@@ -60,7 +60,7 @@ namespace Klijent.GUIKontroler
             ucDetaljiRacuna.DgvDolasci.CurrentCell = null;
             int j = 0;
             bool okej = int.TryParse(unos, out int broj);
-            if (!string.IsNullOrEmpty(unos) || unos.Equals("npr. \"3\""))
+            if (!string.IsNullOrEmpty(unos) || unos.Equals("e.g. \"3\""))
             {
                 if (okej)
                 {
@@ -95,7 +95,7 @@ namespace Klijent.GUIKontroler
                 }
                 else
                 {
-                    MessageBox.Show("Unesite broj!");
+                    MessageBox.Show("Please enter a number!");
                 }
             }
             else
@@ -114,7 +114,7 @@ namespace Klijent.GUIKontroler
 
             List<Racun> racuni = (List<Racun>)Komunikacija.Instance.IzvrsiFju(Operacija.PronadjiRacune, RacunKontroler.Instance.Racun).Rezultat;
             racuni=racuni.Where(r=>r.Mesec==racun.Mesec && r.Godina== racun.Godina).ToList();
-            ucDetaljiRacuna.LblKonacniIznos.Text = "Konačni iznos računa sa obračunatim popustom:" + $"{racuni[0].Iznos}";
+            ucDetaljiRacuna.LblKonacniIznos.Text = "Final invoice amount with applied discount:" + $"{racuni[0].Iznos}";
 
         }
 
@@ -137,6 +137,10 @@ namespace Klijent.GUIKontroler
             ucDetaljiRacuna.DgvDolasci.Columns["UslovZaSet"].Visible = false;
             ucDetaljiRacuna.DgvDolasci.Columns["UslovZaWhereSaUslovom"].Visible = false;
             ucDetaljiRacuna.DgvDolasci.Columns["Identifikator"].Visible = false;
+            ucDetaljiRacuna.DgvDolasci.Columns["GrupniProgram"].HeaderText = "GroupProgram";
+            ucDetaljiRacuna.DgvDolasci.Columns["DatumOdlaska"].HeaderText = "AttendanceDate";
+            ucDetaljiRacuna.DgvDolasci.Columns["Placeno"].HeaderText = "Paid";
+
             ucDetaljiRacuna.DgvDolasci.CellContentClick += PromeniRacun;
             PopuniCene();
         }
@@ -146,21 +150,21 @@ namespace Klijent.GUIKontroler
             if (!ucDetaljiRacuna.DgvDolasci.Columns.Contains("Cena"))
             {
                 DataGridViewTextBoxColumn kolonaCena = new DataGridViewTextBoxColumn();
-                kolonaCena.HeaderText = "Cena";
+                kolonaCena.HeaderText = "Price";
                 kolonaCena.Name = "Cena";
                 ucDetaljiRacuna.DgvDolasci.Columns.Add(kolonaCena);
             }
             if (!ucDetaljiRacuna.DgvDolasci.Columns.Contains("KetegorijskiPopust"))
             {
                 DataGridViewTextBoxColumn kolonaKategPopust = new DataGridViewTextBoxColumn();
-                kolonaKategPopust.HeaderText = "Kategorijski popust (u %)";
+                kolonaKategPopust.HeaderText = "Category discount (in %)";
                 kolonaKategPopust.Name = "KetegorijskiPopust";
                 ucDetaljiRacuna.DgvDolasci.Columns.Add(kolonaKategPopust);
             }
             if (!ucDetaljiRacuna.DgvDolasci.Columns.Contains("KonCena"))
             {
                 DataGridViewTextBoxColumn kolonaKategPopust = new DataGridViewTextBoxColumn();
-                kolonaKategPopust.HeaderText = "Konačna cena";
+                kolonaKategPopust.HeaderText = "Final price";
                 kolonaKategPopust.Name = "KonCena";
                 ucDetaljiRacuna.DgvDolasci.Columns.Add(kolonaKategPopust);
             }
@@ -184,19 +188,27 @@ namespace Klijent.GUIKontroler
             {
                 if (!(bool)ucDetaljiRacuna.DgvDolasci[e.ColumnIndex, e.RowIndex].Value)
                 {
-                    ucDetaljiRacuna.DgvDolasci[e.ColumnIndex, e.RowIndex].Value = true;
                     Odlazak odlazak = (Odlazak)ucDetaljiRacuna.DgvDolasci.Rows[e.RowIndex].DataBoundItem;
                     Racun ra = RacunKontroler.Instance.Racun;
-                    if (ra != null && ra.Iznos>0)
+                    if (ra.Godina>=DateTime.Now.Year && ra.Mesec>=(Mesec)DateTime.Now.Month)
                     {
-                        double smanjiZaIznos = odlazak.GrupniProgram.CenaJednog - ((odlazak.Clan.Kategorija.Popust / 100) * odlazak.GrupniProgram.CenaJednog);
-                        ra.Iznos -= smanjiZaIznos;
-                        odlazak.Placeno = true;
-                        Komunikacija.Instance.IzvrsiFju(Operacija.PromeniOdlazak, odlazak);
-                        Komunikacija.Instance.IzvrsiFju(Operacija.PromeniRacun, ra);                     
-                        MessageBox.Show($"Odlazak je izmenjen i račun je smanjen za {smanjiZaIznos} dinara!");
-                        RefresujDGV?.Invoke(this, EventArgs.Empty);
-                        ucDetaljiRacuna.LblKonacniIznos.Text = "Konačni iznos računa sa obračunatim popustom:" + $" {ra.Iznos}";
+                        if (ra != null && ra.Iznos > 0)
+                        {
+                            ucDetaljiRacuna.DgvDolasci[e.ColumnIndex, e.RowIndex].Value = true;
+                            double smanjiZaIznos = odlazak.GrupniProgram.CenaJednog - ((odlazak.Clan.Kategorija.Popust / 100) * odlazak.GrupniProgram.CenaJednog);
+                            ra.Iznos -= smanjiZaIznos;
+                            odlazak.Placeno = true;
+                            Komunikacija.Instance.IzvrsiFju(Operacija.PromeniOdlazak, odlazak);
+                            Komunikacija.Instance.IzvrsiFju(Operacija.PromeniRacun, ra);
+                            MessageBox.Show($"Attendance has been modified and the invoice reduced by {smanjiZaIznos} RSD!");
+                            RefresujDGV?.Invoke(this, EventArgs.Empty);
+                            ucDetaljiRacuna.LblKonacniIznos.Text = "Final invoice amount with applied discount:" + $" {ra.Iznos}";
+                        } 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attendance cannot be modified for past months!");
+
                     }
                 }
             }

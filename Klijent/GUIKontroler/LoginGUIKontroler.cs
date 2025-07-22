@@ -37,7 +37,7 @@ namespace Klijent.GUIKontroler
             bool uspesnoPovezano = Komunikacija.Instance.PoveziSaServerom();
             if (!uspesnoPovezano)
             {
-                MessageBox.Show("Nije moguće uspostaviti vezu sa serverom. Molimo pokrenite server i pokušajte ponovo.");
+                MessageBox.Show("Unable to connect to the server. Please start the server and try again.");
                 Environment.Exit(0);
                 return; 
             }
@@ -74,7 +74,7 @@ namespace Klijent.GUIKontroler
 
                 if (((List<Operater>)odgovor.Rezultat).Count ==0)
                 {
-                    MessageBox.Show("Ovaj operater ne postoji u sistemu!");
+                    MessageBox.Show("This operator does not exist in the system!");
                 }
                 else if(odgovor.Exception!= null)
                 {
@@ -86,34 +86,34 @@ namespace Klijent.GUIKontroler
                     Operater op=new Operater();
                     op.Ime = ((List<Operater>)odgovor.Rezultat)[0].Ime;
                     op.Prezime = ((List<Operater>)odgovor.Rezultat)[0].Prezime;
-                    MessageBox.Show("Dobrodosao/la "+ op.Ime+
+                    MessageBox.Show("Welcome "+ op.Ime+
                         " "+ op.Prezime+"!");
                     Koordinator.Instance.PrikaziGlavnuFormu(op);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Greska!" +ex.Message);
+                MessageBox.Show("Error!" +ex.Message);
             }
         }
         private bool Validacija()
         {
             if (string.IsNullOrEmpty(frmLogin.TxtEmail.Text) && string.IsNullOrEmpty(frmLogin.TxtLozinka.Text))
             {
-                MessageBox.Show("Unesite email i lozinku!");
+                MessageBox.Show("Please enter email and password!");
                 frmLogin.TxtEmail.BackColor = Color.Red;
                 frmLogin.TxtLozinka.BackColor = Color.Red;
                 return false;
             }
             if (string.IsNullOrEmpty(frmLogin.TxtEmail.Text))
             {
-                MessageBox.Show("Unesite email!");
+                MessageBox.Show("Please enter email!");
                 frmLogin.TxtEmail.BackColor = Color.Red;
                 return false;
             }
             if (string.IsNullOrEmpty(frmLogin.TxtLozinka.Text))
             {
-                MessageBox.Show("Unesite lozinku!");
+                MessageBox.Show("Please enter password!");
                 frmLogin.TxtLozinka.BackColor = Color.Red;
                 return false;
             }

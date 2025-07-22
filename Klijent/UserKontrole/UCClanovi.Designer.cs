@@ -68,7 +68,7 @@ namespace Klijent.UserKontrole
             this.btnDodajClana.Name = "btnDodajClana";
             this.btnDodajClana.Size = new System.Drawing.Size(147, 76);
             this.btnDodajClana.TabIndex = 1;
-            this.btnDodajClana.Text = "Dodaj novog člana";
+            this.btnDodajClana.Text = "Add new member";
             this.btnDodajClana.UseVisualStyleBackColor = true;
             // 
             // btnDetalji
@@ -77,7 +77,7 @@ namespace Klijent.UserKontrole
             this.btnDetalji.Name = "btnDetalji";
             this.btnDetalji.Size = new System.Drawing.Size(147, 76);
             this.btnDetalji.TabIndex = 2;
-            this.btnDetalji.Text = "Detalji o izabranom članu";
+            this.btnDetalji.Text = "Details of the selected member";
             this.btnDetalji.UseVisualStyleBackColor = true;
             // 
             // txtUnosPrezimena
@@ -99,7 +99,7 @@ namespace Klijent.UserKontrole
             this.btnPretraga.Name = "btnPretraga";
             this.btnPretraga.Size = new System.Drawing.Size(118, 53);
             this.btnPretraga.TabIndex = 5;
-            this.btnPretraga.Text = "Pretraži";
+            this.btnPretraga.Text = "Search";
             this.btnPretraga.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -107,9 +107,9 @@ namespace Klijent.UserKontrole
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(194, 16);
+            this.label1.Size = new System.Drawing.Size(189, 16);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Pretraga članova po prezimenu";
+            this.label1.Text = "Search members by last name";
             // 
             // panel1
             // 
@@ -128,7 +128,7 @@ namespace Klijent.UserKontrole
             this.btnObrisiClana.Name = "btnObrisiClana";
             this.btnObrisiClana.Size = new System.Drawing.Size(147, 76);
             this.btnObrisiClana.TabIndex = 8;
-            this.btnObrisiClana.Text = "Obriši člana";
+            this.btnObrisiClana.Text = "Delete member";
             this.btnObrisiClana.UseVisualStyleBackColor = true;
             // 
             // btnKreirajRacun
@@ -137,7 +137,7 @@ namespace Klijent.UserKontrole
             this.btnKreirajRacun.Name = "btnKreirajRacun";
             this.btnKreirajRacun.Size = new System.Drawing.Size(147, 76);
             this.btnKreirajRacun.TabIndex = 9;
-            this.btnKreirajRacun.Text = "Kreiraj račun za izabranog člana";
+            this.btnKreirajRacun.Text = "Create an invoice for this month for this member";
             this.btnKreirajRacun.UseVisualStyleBackColor = true;
             // 
             // btnSviRacuni
@@ -146,7 +146,7 @@ namespace Klijent.UserKontrole
             this.btnSviRacuni.Name = "btnSviRacuni";
             this.btnSviRacuni.Size = new System.Drawing.Size(147, 76);
             this.btnSviRacuni.TabIndex = 10;
-            this.btnSviRacuni.Text = "Svi računi izabranog člana";
+            this.btnSviRacuni.Text = "All invoices of the selected member";
             this.btnSviRacuni.UseVisualStyleBackColor = true;
             // 
             // btnKreirajDolazak
@@ -155,7 +155,7 @@ namespace Klijent.UserKontrole
             this.btnKreirajDolazak.Name = "btnKreirajDolazak";
             this.btnKreirajDolazak.Size = new System.Drawing.Size(147, 76);
             this.btnKreirajDolazak.TabIndex = 11;
-            this.btnKreirajDolazak.Text = "Kreiraj odlazak za izabranog člana";
+            this.btnKreirajDolazak.Text = "Create attendance for selected member";
             this.btnKreirajDolazak.UseVisualStyleBackColor = true;
             // 
             // UCClanovi

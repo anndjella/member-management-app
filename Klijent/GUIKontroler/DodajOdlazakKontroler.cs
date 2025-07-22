@@ -70,31 +70,34 @@ namespace Klijent.GUIKontroler
                 c.Godina == DateTime.Now.Year).ToList();
                 if (racuniZaMesecIGod.Count == 0)
                 {
-                    MessageBox.Show("Ne možete dodati dolaske jer nije kreiran račun!");
+                    MessageBox.Show("You cannot add visits because no invoice has been created!");
                 }
-                else
-                if (ucDodajOdlazak.CmbGrPr.SelectedIndex == -1 && (!ucDodajOdlazak.TxtDan.Text.All(char.IsDigit) || ucDodajOdlazak.TxtDan.Text.Equals("npr \"12\"")
-                    || string.IsNullOrEmpty(ucDodajOdlazak.TxtDan.Text)))
+                else if (ucDodajOdlazak.CmbGrPr.SelectedIndex == -1 &&
+                         (!ucDodajOdlazak.TxtDan.Text.All(char.IsDigit) ||
+                          ucDodajOdlazak.TxtDan.Text.Equals("e.g. \"12\"") ||
+                          string.IsNullOrEmpty(ucDodajOdlazak.TxtDan.Text)))
                 {
-                    MessageBox.Show("Unesite dan i izaberite vrstu grupnog treninga!");
+                    MessageBox.Show("Please enter the day and select a group training type!");
                 }
                 else if (ucDodajOdlazak.CmbGrPr.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Izaberite vrstu grupnog treninga!");
+                    MessageBox.Show("Please select a group training type!");
                 }
-                else if (!ucDodajOdlazak.TxtDan.Text.All(char.IsDigit) || ucDodajOdlazak.TxtDan.Text.Equals("npr \"12\"")
-                    || string.IsNullOrEmpty(ucDodajOdlazak.TxtDan.Text))
+                else if (!ucDodajOdlazak.TxtDan.Text.All(char.IsDigit) ||
+                          ucDodajOdlazak.TxtDan.Text.Equals("e.g. \"12\"") ||
+                          string.IsNullOrEmpty(ucDodajOdlazak.TxtDan.Text))
                 {
-                    MessageBox.Show("Unesite dan!");
+                    MessageBox.Show("Please enter the day!");
                 }
                 else if (!ValidacijaDana(ucDodajOdlazak.TxtDan.Text))
                 {
-                    MessageBox.Show("Unesite adekvatan broj dana u ovom mesecu!");
+                    MessageBox.Show("Please enter a valid day number for this month!");
                 }
                 else if (int.Parse(ucDodajOdlazak.TxtDan.Text) > DateTime.Now.Day)
                 {
-                    MessageBox.Show("Ne možete evidentirati buduće dolaske!");
+                    MessageBox.Show("You cannot record future visits!");
                 }
+
                 else
                 {
                     Odlazak odlazak = new Odlazak();
@@ -111,7 +114,7 @@ namespace Klijent.GUIKontroler
                     Odgovor odg = Komunikacija.Instance.IzvrsiFjuSacuvajVise(Operacija.SacuvajOdlazak, odlasci);
                     if (odg.Exception != null)
                     {
-                        MessageBox.Show("Sistem ne može da zapamti odlazak.");
+                        MessageBox.Show("The system cannot save the attendance.");
                     }
                     else
                     {
@@ -127,7 +130,7 @@ namespace Klijent.GUIKontroler
                                 }
                             }
                         }
-                        MessageBox.Show("Sistem je zapamtio odlazak.");
+                        MessageBox.Show("The system has saved the attendance.");
                     }
                 }
             }

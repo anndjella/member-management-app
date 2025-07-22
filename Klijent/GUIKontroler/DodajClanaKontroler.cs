@@ -52,29 +52,30 @@ namespace Klijent.GUIKontroler
             frmDodajClana.BtnSacuvajIzmene.Visible = false;
             frmDodajClana.BtnObrisi.Visible = false;
             if (!ValidacijaPopunjenog())
-            {
-                MessageBox.Show("Popunite sva polja!");
-            }
-            else if (!dobarBroj & !dobarEmail)
-            {
-                MessageBox.Show("Pogrešno unet broj, a email treba da sadrzi bar jedan @ i bar jednu tačku");
-            }
-            else if (!dobarEmail && dobarBroj)
-            {
-                MessageBox.Show("Email treba da sadrzi bar jedan @ i bar jednu tačku!");
-            }
-            else if (dobarEmail && !dobarBroj)
-            {
-                MessageBox.Show("Broj mora da bude u formatu 06..!");
-            }
-            else if (clanovi.Any(clan => clan.Email == frmDodajClana.TxtEmail.Text))
-            {
-                MessageBox.Show("Vec postoji korisnik sa ovom email adresom!");
-            }
-            else if (clanovi.Any(clan => clan.BrojTelefona == frmDodajClana.TxtBrTel.Text))
-            {
-                MessageBox.Show("Vec postoji korisnik sa ovom brojem telefona!");
-            }
+{
+    MessageBox.Show("Please fill in all fields!");
+}
+else if (!dobarBroj & !dobarEmail)
+{
+    MessageBox.Show("Invalid phone number, and email must contain at least one '@' and one '.'");
+}
+else if (!dobarEmail && dobarBroj)
+{
+    MessageBox.Show("Email must contain at least one '@' and one '.'!");
+}
+else if (dobarEmail && !dobarBroj)
+{
+    MessageBox.Show("Phone number must follow the format starting with 06..!");
+}
+else if (clanovi.Any(clan => clan.Email == frmDodajClana.TxtEmail.Text))
+{
+    MessageBox.Show("A user with this email address already exists!");
+}
+else if (clanovi.Any(clan => clan.BrojTelefona == frmDodajClana.TxtBrTel.Text))
+{
+    MessageBox.Show("A user with this phone number already exists!");
+}
+
             else
             {
                 Clan clan1 = new Clan();
@@ -87,13 +88,13 @@ namespace Klijent.GUIKontroler
                 Odgovor odg = Komunikacija.Instance.IzvrsiFju(Operacija.ZapamtiClana, clan1);
                 if (odg.Exception == null)
                 {
-                    MessageBox.Show("Sistem je zapamtio clana.");
+                    MessageBox.Show("The system has saved the member.");
                     ClanDodat?.Invoke(this, EventArgs.Empty);
                     frmDodajClana.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Sistem ne može da zapamti člana");
+                    MessageBox.Show("The system cannot save the member.");
                 }
             }
         }
@@ -164,7 +165,7 @@ namespace Klijent.GUIKontroler
             {
                 if (c is TextBox)
                 {
-                    if (string.IsNullOrEmpty(c.Text) || c.Text.Equals("npr. 069 4000 122"))
+                    if (string.IsNullOrEmpty(c.Text) || c.Text.Equals("e.g. 069 4000 122"))
                     {
                         c.BackColor = Color.Red;
                         sveUneto = false;
@@ -205,7 +206,7 @@ namespace Klijent.GUIKontroler
                 frmDodajClana.TxtIme.Text = clan.Ime;
                 frmDodajClana.TxtPrezime.Text = clan.Prezime;
                 frmDodajClana.CmbKateg.SelectedIndex = clan.Kategorija.Id - 1;
-                frmDodajClana.Text = $"Detalji o korisniku {clan.Ime} {clan.Prezime}";
+                frmDodajClana.Text = $"User datails: {clan.Ime} {clan.Prezime}";
                 frmDodajClana.FormClosed += (s, ev) => { frmDodajClana = null; };             
                 frmDodajClana.ShowDialog();
                  //MessageBox.Show("Sistem je učitao člana.");
@@ -224,27 +225,27 @@ namespace Klijent.GUIKontroler
             frmDodajClana.BtnObrisi.Visible = false;
             if (!ValidacijaPopunjenog())
             {
-                MessageBox.Show("Popunite sva polja!");
+                MessageBox.Show("Please fill in all fields!");
             }
-            else if (!dobarBroj & !dobarEmail)
+            else if (!dobarBroj && !dobarEmail)
             {
-                MessageBox.Show("Pogrešno unet broj, a email treba da sadrzi bar jedan @ i bar jednu tačku");
+                MessageBox.Show("Invalid phone number and email must contain at least one '@' and one '.'");
             }
             else if (!dobarEmail && dobarBroj)
             {
-                MessageBox.Show("Email treba da sadrzi bar jedan @ i bar jednu tačku!");
+                MessageBox.Show("Email must contain at least one '@' and one '.'!");
             }
             else if (dobarEmail && !dobarBroj)
             {
-                MessageBox.Show("Broj mora da bude u formatu 06..!");
+                MessageBox.Show("Phone number must be in the format starting with 06..!");
             }
             else if (clanovi.Any(cla => cla.Email == frmDodajClana.TxtEmail.Text && cla.IdClana != clan.IdClana))
             {
-                MessageBox.Show("Vec postoji korisnik sa ovom email adresom!");
+                MessageBox.Show("A user with this email address already exists!");
             }
             else if (clanovi.Any(cla => cla.BrojTelefona == frmDodajClana.TxtBrTel.Text && cla.IdClana != clan.IdClana))
             {
-                MessageBox.Show("Vec postoji korisnik sa ovim brojem telefona!");
+                MessageBox.Show("A user with this phone number already exists!");
             }
             else
             {
@@ -259,13 +260,13 @@ namespace Klijent.GUIKontroler
                 Odgovor odg = Komunikacija.Instance.IzvrsiFju(Operacija.IzmeniClana, clan2);
                 if (odg.Exception == null)
                 {
-                    MessageBox.Show("Sistem je izmenio člana.");
+                    MessageBox.Show("The system has saved the member.");
                     ClanDodat?.Invoke(this, EventArgs.Empty);
                     frmDodajClana.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Sistem ne može da izmeni člana");
+                    MessageBox.Show("The system cannot save the member");
                 }
             }
         }
@@ -295,7 +296,7 @@ namespace Klijent.GUIKontroler
                 frmDodajClana.TxtIme.Enabled = false;
                 frmDodajClana.TxtPrezime.Enabled = false;
                 frmDodajClana.CmbKateg.Enabled= false;
-                frmDodajClana.Text = $"Detalji o korisniku {clan.Ime} {clan.Prezime}";
+                frmDodajClana.Text = $"User details: {clan.Ime} {clan.Prezime}";
                 frmDodajClana.FormClosed += (s, ev) => { frmDodajClana = null; };
                 frmDodajClana.ShowDialog();
                 
@@ -315,11 +316,11 @@ namespace Klijent.GUIKontroler
             Odgovor odg=Komunikacija.Instance.IzvrsiFju(Operacija.IzbrisiClana,clan);
             if (odg.Exception == null)
             {
-                MessageBox.Show("Sistem je obrisao člana");
+                MessageBox.Show("The system has deleted the member.");
             }
             else
             {
-                MessageBox.Show("Sistem ne može da obriše člana");
+                MessageBox.Show("The system cannot delete the member.");
             }
 
         }

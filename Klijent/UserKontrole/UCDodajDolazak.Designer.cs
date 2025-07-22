@@ -63,18 +63,18 @@ namespace Klijent.UserKontrole
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(18, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 16);
+            this.label1.Size = new System.Drawing.Size(148, 16);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Vrsta grupnog programa:";
+            this.label1.Text = "Type of group program:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(18, 110);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(157, 16);
+            this.label2.Size = new System.Drawing.Size(147, 16);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Cena grupnog programa:";
+            this.label2.Text = "Price of group program:";
             // 
             // txtCenaGrPr
             // 
@@ -105,9 +105,9 @@ namespace Klijent.UserKontrole
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(432, 167);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 16);
+            this.label3.Size = new System.Drawing.Size(46, 16);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Mesec:";
+            this.label3.Text = "Month:";
             // 
             // txtGodina
             // 
@@ -124,9 +124,9 @@ namespace Klijent.UserKontrole
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label4.Location = new System.Drawing.Point(605, 167);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 16);
+            this.label4.Size = new System.Drawing.Size(39, 16);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Godina:";
+            this.label4.Text = "Year:";
             // 
             // txtDanOdlaska
             // 
@@ -135,16 +135,16 @@ namespace Klijent.UserKontrole
             this.txtDanOdlaska.Name = "txtDanOdlaska";
             this.txtDanOdlaska.Size = new System.Drawing.Size(209, 22);
             this.txtDanOdlaska.TabIndex = 10;
-            this.txtDanOdlaska.Text = "npr \"12\"";
+            this.txtDanOdlaska.Text = "e.g.\"12\"";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(18, 164);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(134, 16);
+            this.label5.Size = new System.Drawing.Size(137, 16);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Unesite dan odlaska:";
+            this.label5.Text = "Enter attendance day:";
             // 
             // lbl
             // 
@@ -159,18 +159,18 @@ namespace Klijent.UserKontrole
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(18, 225);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 16);
+            this.label6.Size = new System.Drawing.Size(42, 16);
             this.label6.TabIndex = 12;
-            this.label6.Text = "Plaćeno?";
+            this.label6.Text = "Paid?";
             // 
             // chBoxPlaceno
             // 
             this.chBoxPlaceno.AutoSize = true;
             this.chBoxPlaceno.Location = new System.Drawing.Point(205, 224);
             this.chBoxPlaceno.Name = "chBoxPlaceno";
-            this.chBoxPlaceno.Size = new System.Drawing.Size(45, 20);
+            this.chBoxPlaceno.Size = new System.Drawing.Size(51, 20);
             this.chBoxPlaceno.TabIndex = 13;
-            this.chBoxPlaceno.Text = "da";
+            this.chBoxPlaceno.Text = "yes";
             this.chBoxPlaceno.UseVisualStyleBackColor = true;
             // 
             // btnSacuvajDolazak
@@ -179,7 +179,7 @@ namespace Klijent.UserKontrole
             this.btnSacuvajDolazak.Name = "btnSacuvajDolazak";
             this.btnSacuvajDolazak.Size = new System.Drawing.Size(188, 61);
             this.btnSacuvajDolazak.TabIndex = 15;
-            this.btnSacuvajDolazak.Text = "Sačuvaj odlazak";
+            this.btnSacuvajDolazak.Text = "Save attendance";
             this.btnSacuvajDolazak.UseVisualStyleBackColor = true;
             // 
             // lblPreostaliBrTer
@@ -196,7 +196,7 @@ namespace Klijent.UserKontrole
             this.btnViseDolazaka.Name = "btnViseDolazaka";
             this.btnViseDolazaka.Size = new System.Drawing.Size(188, 61);
             this.btnViseDolazaka.TabIndex = 17;
-            this.btnViseDolazaka.Text = "Dodaj više odlazaka odjednom";
+            this.btnViseDolazaka.Text = "Add multiple attendances";
             this.btnViseDolazaka.UseVisualStyleBackColor = true;
             // 
             // UCDodajDolazak

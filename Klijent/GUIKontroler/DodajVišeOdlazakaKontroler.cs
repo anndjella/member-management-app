@@ -13,7 +13,7 @@ namespace Klijent.GUIKontroler
 {
     public class DodajVišeOdlazakaKontroler
     {
-        private FrmDodajViseOdlazaka frmViseDol;
+        private FrmAddMultipleAttendances frmViseDol;
         private static DodajVišeOdlazakaKontroler instance;
         public static DodajVišeOdlazakaKontroler Instance
         {
@@ -29,7 +29,7 @@ namespace Klijent.GUIKontroler
 
         internal void PrikaziUC(object sender, EventArgs e)
         {
-            frmViseDol = new FrmDodajViseOdlazaka();
+            frmViseDol = new FrmAddMultipleAttendances();
             frmViseDol.BtnSacuvaj.Click += Pokupi;
             frmViseDol.Dgv.CellValidating += ProveriBroj;
             List<GrupniProgram> grupni = (List<GrupniProgram>)Komunikacija.Instance.IzvrsiFju(Operacija.VratiSveGrPr).Rezultat;
@@ -39,20 +39,20 @@ namespace Klijent.GUIKontroler
                 DisplayMember = "Naziv",
                 ValueMember = "Self",
                 DataPropertyName = "GrupniProgram",
-                HeaderText = "Grupni Program",
+                HeaderText = "Group program",
                 Name = "GrPr"
             };
             frmViseDol.Dgv.Columns.Add(cmb);
             DataGridViewTextBoxColumn dan = new DataGridViewTextBoxColumn
             {
-                HeaderText = "Dan",
+                HeaderText = "Day",
                 Name = "Dan"
             };
             frmViseDol.Dgv.Columns.Add(dan);
             DataGridViewCheckBoxColumn chBox = new DataGridViewCheckBoxColumn
             {
                 DataPropertyName = "CheckBox",
-                HeaderText = "Placeno?",
+                HeaderText = "Paid?",
                 Name = "Placeno"
             };
             frmViseDol.Dgv.Columns.Add(chBox);
@@ -70,13 +70,13 @@ namespace Klijent.GUIKontroler
                     {
                         if (broj > DateTime.Now.Day)
                         {
-                            MessageBox.Show("Ne možete evidentirati buduće dolaske!");
+                            MessageBox.Show("You cannot record future attendances!");
                             e.Cancel = true;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Unesite broj!");
+                        MessageBox.Show("Please enter a number!");
                         e.Cancel = true;
                     }
                 }
@@ -94,7 +94,7 @@ namespace Klijent.GUIKontroler
                 c.Godina == DateTime.Now.Year).ToList();
                 if (racuniZaMesecIGod.Count == 0)
                 {
-                    MessageBox.Show("Ne možete dodati dolaske jer nije kreiran račun!");
+                    MessageBox.Show("You cannot add attendances because no invoice has been created!");
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace Klijent.GUIKontroler
                     Odgovor odg = Komunikacija.Instance.IzvrsiFjuSacuvajVise(Operacija.SacuvajOdlazak, odlasci);
                     if (odg.Exception != null)
                     {
-                        MessageBox.Show("Sistem nije mogao da zapamti odlaske!");
+                        MessageBox.Show("The system could not save the attendances!");
                     }
                     else
                     {
@@ -151,7 +151,7 @@ namespace Klijent.GUIKontroler
                                 }
                             }
                         }
-                        MessageBox.Show("Odlasci su uspesno sacuvani!");
+                        MessageBox.Show("Attendances have been saved successfully!");
                     }
 
 

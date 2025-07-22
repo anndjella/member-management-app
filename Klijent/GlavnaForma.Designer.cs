@@ -54,8 +54,8 @@
             this.clanoviToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.clanoviToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5);
             this.clanoviToolStripMenuItem.Name = "clanoviToolStripMenuItem";
-            this.clanoviToolStripMenuItem.Size = new System.Drawing.Size(84, 29);
-            this.clanoviToolStripMenuItem.Text = "Clanovi";
+            this.clanoviToolStripMenuItem.Size = new System.Drawing.Size(101, 29);
+            this.clanoviToolStripMenuItem.Text = "Members";
             // 
             // panel
             // 
@@ -89,7 +89,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GlavnaForma";
-            this.Text = "GlavnaForma";
+            this.Text = "MainForm";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

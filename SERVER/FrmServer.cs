@@ -22,7 +22,7 @@ namespace SERVER
         {
             btnPokreniServer.Visible = false;   
             btnZaustaviServer.Visible = true;
-            lblStatusServera.Text = "Server je pokrenut!";
+            lblStatusServera.Text = "Server is running!";
             lblStatusServera.ForeColor = Color.ForestGreen;
             server = new Server();
             server.PokreniServer();
@@ -32,7 +32,7 @@ namespace SERVER
         {
             btnPokreniServer.Visible = true;
             btnZaustaviServer.Visible = false;
-            lblStatusServera.Text = "Server je ugašen!";
+            lblStatusServera.Text = "Server is not running!";
             lblStatusServera.ForeColor = Color.Red;
             server.ZaustaviServer();
         }

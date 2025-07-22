@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Klijent
 {
-    public partial class FrmDodajViseOdlazaka : Form
+    public partial class FrmAddMultipleAttendances : Form
     {
-        public FrmDodajViseOdlazaka()
+        public FrmAddMultipleAttendances()
         {
             InitializeComponent();
         }
