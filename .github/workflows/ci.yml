@@ -1,0 +1,20 @@
+name: Build (Windows)
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Restore NuGet packages
+        run: nuget restore ".\ProjekatAndjelaStankovic.sln"
+      - name: Build solution (Release)
+        run: msbuild ".\ProjekatAndjelaStankovic.sln" /p:Configuration=Release /m
