@@ -14,6 +14,7 @@ using System.Windows.Media;
 using Zajednicko;
 using Zajednicko.Domain;
 using Zajednicko.Komunikacija;
+using CoreLogic;
 
 namespace Klijent.GUIKontroler
 {
@@ -188,7 +189,13 @@ namespace Klijent.GUIKontroler
                 Racun ra = new Racun();
                 ra.Clan = Clan;
                 racuni = (List<Racun>)Komunikacija.Instance.IzvrsiFju(Operacija.PronadjiRacune, ra).Rezultat;
-                bool postojiOvomesecniRacun = racuni.Any(r => r.Mesec == (Mesec)DateTime.Now.Month && r.Godina == DateTime.Now.Year);
+                //bool postojiOvomesecniRacun = racuni.Any(r => r.Mesec == (Mesec)DateTime.Now.Month && r.Godina == DateTime.Now.Year);
+                bool postojiOvomesecniRacun = InvoiceRules.ExistsForCurrentMonth(
+                        racuni,
+                        DateTime.Now,
+                        r => (int)r.Mesec,
+                        r => r.Godina);
+
                 if (postojiOvomesecniRacun)
                 {
                     MessageBox.Show("The user already has an invoice created for this month!");

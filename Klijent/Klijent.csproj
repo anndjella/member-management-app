@@ -158,6 +158,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreLogic\CoreLogic.csproj">
+      <Project>{abbcbf49-0cbc-48e2-8f6b-c2a0c71ff410}</Project>
+      <Name>CoreLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DBBroker\DBBroker.csproj">
       <Project>{F5FCEAB6-F7E6-47F5-BA8C-1FD5568F7D26}</Project>
       <Name>DBBroker</Name>
