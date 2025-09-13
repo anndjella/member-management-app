@@ -18,3 +18,11 @@ jobs:
         run: nuget restore ".\ProjekatAndjelaStankovic.sln"
       - name: Build solution (Release)
         run: msbuild ".\ProjekatAndjelaStankovic.sln" /p:Configuration=Release /m
+
+      - name: Setup .NET SDK (for tests)
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Run tests (xUnit)
+        run: dotnet test ".\InvoiceRules.Tests\InvoiceRules.Tests.csproj" --configuration Release
