@@ -14,9 +14,6 @@ using System.Windows.Media;
 using Zajednicko;
 using Zajednicko.Domain;
 using Zajednicko.Komunikacija;
-using CoreLogic;
-using CoreLogic.Services;
-using CoreLogic.Abstractions;
 using Klijent.Infra;
 using Klijent.Abstractions;
 
