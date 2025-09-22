@@ -22,9 +22,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\CoreLogic\CoreLogic.csproj" />
-    <ProjectReference Include="..\Zajednicko\Zajednicko.csproj" />
-  </ItemGroup>
-
 </Project>
