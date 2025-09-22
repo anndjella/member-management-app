@@ -1,4 +1,4 @@
-name: Build (Windows)
+name: build-test
 
 on:
   push:
@@ -25,4 +25,11 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Run tests (xUnit)
-        run: dotnet test ".\InvoiceRules.Tests\InvoiceRules.Tests.csproj" --configuration Release
+        run: dotnet test ".\Invoice.Tests\Invoice.Tests.csproj" --configuration Release --no-build --logger "trx;LogFileName=test_results.trx"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: "**/TestResults/*.trx"

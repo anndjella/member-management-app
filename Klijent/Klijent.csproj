@@ -52,6 +52,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IAppGetaway.cs" />
+    <Compile Include="Abstractions\ISystemServices.cs" />
     <Compile Include="FrmDodajClana.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +86,8 @@
     <Compile Include="GUIKontroler\RacunKontroler.cs" />
     <Compile Include="GUIKontroler\Koordinator.cs" />
     <Compile Include="GUIKontroler\LoginGUIKontroler.cs" />
+    <Compile Include="Infra\DefaultGetaway.cs" />
+    <Compile Include="Infra\WinFormsSystemServices.cs" />
     <Compile Include="Komunikacija.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -171,5 +175,6 @@
       <Name>Zajednicko</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

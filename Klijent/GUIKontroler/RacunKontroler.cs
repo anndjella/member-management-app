@@ -15,6 +15,10 @@ using Zajednicko;
 using Zajednicko.Domain;
 using Zajednicko.Komunikacija;
 using CoreLogic;
+using CoreLogic.Services;
+using CoreLogic.Abstractions;
+using Klijent.Infra;
+using Klijent.Abstractions;
 
 namespace Klijent.GUIKontroler
 {
@@ -26,13 +30,23 @@ namespace Klijent.GUIKontroler
         public Clan Clan { get; set; }
         public EventHandler DetaljiRacuna;
         private static RacunKontroler instance;
+
+        private readonly ISystemServices _sys;
+        private readonly IAppGateway _gw;
+
+
+        internal UCRacun View => ucRacun;
+        internal void SetRacuni(List<Racun> r) => racuni = r ?? new List<Racun>();
         public static RacunKontroler Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new RacunKontroler();
+                    instance = new RacunKontroler(
+                        new WinFormsSystemServices(), 
+                        new DefaultGateway()         
+                    );
                 }
                 return instance;
             }
@@ -42,6 +56,21 @@ namespace Klijent.GUIKontroler
             ucRacun = new UCRacun();
             ClanoviKontroler.Instance.FormirajLabelu += InicijalicujFormuKreirajRacun;
             ClanoviKontroler.Instance.FormirajLabeluSviRacuni += InicijalicujFormuSviRacuni;
+            ucRacun.BtnKreirajRacun.Click += KreirajRacun;
+            ucRacun.DgvOdlasci.CellFormatting += PrevediMesece;
+
+        }
+
+        internal RacunKontroler(ISystemServices sys, IAppGateway gw)
+        {
+            _sys = sys;
+            _gw = gw;
+
+            ucRacun = new UCRacun();
+
+            ClanoviKontroler.Instance.FormirajLabelu += InicijalicujFormuKreirajRacun;
+            ClanoviKontroler.Instance.FormirajLabeluSviRacuni += InicijalicujFormuSviRacuni;
+
             ucRacun.BtnKreirajRacun.Click += KreirajRacun;
             ucRacun.DgvOdlasci.CellFormatting += PrevediMesece;
 
@@ -103,7 +132,7 @@ namespace Klijent.GUIKontroler
                 tBox.Text = "";
             }
         }
-        private void PretragaRacuna(object sender, EventArgs e)
+        internal void PretragaRacuna(object sender, EventArgs e)
         {
             string unos = ucRacun.TxtUnos.Text;
             bool okej = Enum.TryParse(unos, true, out Mesec mesec);
@@ -143,7 +172,7 @@ namespace Klijent.GUIKontroler
                 }
                 else
                 {
-                    MessageBox.Show("Invalid format entered!");
+                    _sys.Info("Invalid format entered!"); 
                 }
             }
             else
@@ -181,49 +210,45 @@ namespace Klijent.GUIKontroler
 
         }
 
-        private void KreirajRacun(object sender, EventArgs e)
+        internal void KreirajRacun(object sender, EventArgs e)
         {
-            DialogResult rez = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
-            if (rez == DialogResult.Yes)
-            {
-                Racun ra = new Racun();
-                ra.Clan = Clan;
-                racuni = (List<Racun>)Komunikacija.Instance.IzvrsiFju(Operacija.PronadjiRacune, ra).Rezultat;
-                //bool postojiOvomesecniRacun = racuni.Any(r => r.Mesec == (Mesec)DateTime.Now.Month && r.Godina == DateTime.Now.Year);
-                bool postojiOvomesecniRacun = InvoiceRules.ExistsForCurrentMonth(
-                        racuni,
-                        DateTime.Now,
-                        r => (int)r.Mesec,
-                        r => r.Godina);
+            if (!_sys.Confirm("Are you sure?", "Warning"))
+                return;
+            Racun ra = new Racun();
+            ra.Clan = Clan;
+            ra.Mesec = (Mesec)_sys.Now().Month;
+            ra.Godina = _sys.Now().Year;
 
-                if (postojiOvomesecniRacun)
-                {
-                    MessageBox.Show("The user already has an invoice created for this month!");
-                }
-                else
-                {
-                    ZapamtiRacun();
-                }
+            racuni = (List<Racun>)_gw.Izvrsi(Operacija.PronadjiRacune, ra).Rezultat;
+
+            bool postojiOvomesecniRacun = racuni.Any(r =>
+                            r.Mesec == (Mesec)_sys.Now().Month &&
+                            r.Godina == _sys.Now().Year);
+
+            if (postojiOvomesecniRacun)
+            {
+                _sys.Info("The user already has an invoice created for this month!");
+            }
+            else
+            {
+                ZapamtiRacun();
             }
 
         }
-
-        private void ZapamtiRacun()
+        internal void ZapamtiRacun()
         {
             Racun racun = new Racun();
             racun.Clan = new Clan();
             racun.Clan.IdClana = Clan.IdClana;
-            racun.Mesec = (Mesec)DateTime.Now.Month;
-            racun.Godina = DateTime.Now.Year;
+            racun.Mesec = (Mesec)_sys.Now().Month;
+            racun.Godina = _sys.Now().Year;
             racun.Iznos = 0;
-            Odgovor odg = Komunikacija.Instance.IzvrsiFju(Operacija.DodajRacun, racun);
+            Odgovor odg = _gw.Izvrsi(Operacija.DodajRacun, racun);
             if (odg.Exception == null)
             {
-                MessageBox.Show($"The system has saved the invoice.");
+                _sys.Info("The system has saved the invoice.");
             }
         }
-
-
 
         internal UserControl VratiKontroluDodajRacun()
         {

@@ -41,8 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InvoiceRules.cs" />
+    <Compile Include="Abstractions\IClock.cs" />
+    <Compile Include="Abstractions\SystemClock.cs" />
+    <Compile Include="Services\ExistsInvoice.cs" />
+    <Compile Include="Abstractions\INotifier.cs" />
+    <Compile Include="Abstractions\IRacunGetaway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\SaveInvoice.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zajednicko\Zajednicko.csproj">
+      <Project>{41f41c6c-8a10-4d71-905e-0e3880f4b3cf}</Project>
+      <Name>Zajednicko</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

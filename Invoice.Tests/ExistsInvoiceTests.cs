@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using CoreLogic;
-using CoreLogic;
+using CoreLogic.Abstractions;
+using CoreLogic.Services;
 using Xunit;
 using Zajednicko.Domain; 
 
-public class InvoiceRulesTests
+public class ExistsInvoiceTests
 {
     [Fact]
     public void ExistsForCurrentMonth_ReturnsTrue_WhenInvoiceForNowExists()
@@ -17,7 +18,7 @@ public class InvoiceRulesTests
             new Racun { Mesec = Mesec.September, Godina = 2025 }, // matches "now"
         };
 
-        bool exists = InvoiceRules.ExistsForCurrentMonth(
+        bool exists = ExistsInvoice.ExistsForCurrentMonth(
             invoices,
             now,
             r => (int)r.Mesec,
@@ -36,7 +37,7 @@ public class InvoiceRulesTests
             new Racun { Mesec = Mesec.September, Godina = 2024 },
         };
 
-        bool exists = InvoiceRules.ExistsForCurrentMonth(
+        bool exists = ExistsInvoice.ExistsForCurrentMonth(
             invoices,
             now,
             r => (int)r.Mesec,
