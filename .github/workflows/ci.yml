@@ -17,7 +17,7 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore ".\ProjekatAndjelaStankovic.sln"
       - name: Build solution (Release)
-        run: msbuild ".\ProjekatAndjelaStankovic.sln" /p:Configuration=Release /m
+        run: msbuild ".\ProjekatAndjelaStankovic.sln" /m /p:Configuration=${{ env.CONFIGURATION }}
 
       - name: Setup .NET SDK (for tests)
         uses: actions/setup-dotnet@v4
@@ -25,4 +25,4 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Run tests (xUnit)
-        run: dotnet test --verbosity normal
+        run: dotnet test --no-build --configuration ${{ env.CONFIGURATION }} --verbosity normal
