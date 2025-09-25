@@ -25,4 +25,4 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Run tests (xUnit)
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --verbosity normal
