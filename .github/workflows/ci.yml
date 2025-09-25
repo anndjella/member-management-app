@@ -9,6 +9,8 @@ on:
 jobs:
   build-and-test:
     runs-on: windows-latest
+    env:
+      CONFIGURATION: Debug
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,7 +19,7 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore ".\ProjekatAndjelaStankovic.sln"
       - name: Build solution (Release)
-        run: msbuild ".\ProjekatAndjelaStankovic.sln" /m /p:Configuration=${{ env.CONFIGURATION }}
+        run: msbuild ".\ProjekatAndjelaStankovic.sln" /m /p:Configuration=${{ env.CONFIGURATION }} /p:Platform="Any CPU"
 
       - name: Setup .NET SDK (for tests)
         uses: actions/setup-dotnet@v4
