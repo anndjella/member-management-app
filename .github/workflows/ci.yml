@@ -1,4 +1,4 @@
-name: build-test
+name: CI Pipeline
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-and-test:
+    name: Build and Test
     runs-on: windows-latest
     env:
       CONFIGURATION: Debug
