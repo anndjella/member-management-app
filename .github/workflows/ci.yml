@@ -58,14 +58,15 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Restore & Build
-        run: |
-          dotnet restore
-          dotnet build --configuration Release --no-restore
+      - name: Restore Db.Tests
+        run: dotnet restore ./Db.Tests/Db.Tests.csproj
+
+      - name: Build Db.Tests
+        run: dotnet build ./Db.Tests/Db.Tests.csproj --configuration Release --no-restore
 
       - name: Run integration tests (xUnit)
         env:
-          TEST_SQL_CONNSTR_MASTER: >-
-            Server=localhost,1433;User ID=sa;Password=${{ secrets.SA_PASSWORD }};
-            Encrypt=true;TrustServerCertificate=true;Database=master
-        run: dotnet test --configuration Release --no-build --filter TestCategory=Integration
+        TEST_SQL_CONNSTR_MASTER: >-
+          Server=localhost,1433;User ID=sa;Password=${{ secrets.SA_PASSWORD }};
+          Encrypt=true;TrustServerCertificate=true;Database=master
+        run: dotnet test ./Db.Tests/Db.Tests.csproj --configuration Release --no-build --filter TestCategory=Integration
