@@ -28,7 +28,7 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Run tests (xUnit)
-        run: dotnet test --no-build --configuration ${{ env.CONFIGURATION }} --verbosity normal
+        run: dotnet test --no-build --configuration ${{ env.CONFIGURATION }} --verbosity normal --filter "TestCategory!=Integration"
 
  
   integration-tests:
