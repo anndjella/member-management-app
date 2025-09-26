@@ -16,7 +16,9 @@ namespace DBBroker
 
         public DbKonekcija()
         {
-            connection = new SqlConnection(ConfigurationManager.ConnectionStrings["baza"].ConnectionString);
+            EnvLoader.Load();
+            connection = new SqlConnection(DbConfig.ConnectionString());
+            //connection = new SqlConnection(ConfigurationManager.ConnectionStrings["baza"].ConnectionString);
             //new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=bazaAndjela;Integrated Security=True;");
         }
 

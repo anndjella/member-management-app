@@ -29,3 +29,43 @@ jobs:
 
       - name: Run tests (xUnit)
         run: dotnet test --no-build --configuration ${{ env.CONFIGURATION }} --verbosity normal
+
+ 
+  integration-tests:
+    name: Integration tests with SQL
+    needs: build-and-test           
+    runs-on: ubuntu-latest
+
+    services:
+      mssql:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_PID: "Express"
+          SA_PASSWORD: ${{ secrets.SA_PASSWORD }}
+        ports:
+          - 1433:1433
+        options: >-
+          --health-cmd "bash -lc 'echo > /dev/tcp/127.0.0.1/1433'"
+          --health-interval 5s --health-timeout 3s --health-retries 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Restore & Build
+        run: |
+          dotnet restore
+          dotnet build --configuration Release --no-restore
+
+      - name: Run integration tests (xUnit)
+        env:
+          TEST_SQL_CONNSTR_MASTER: >-
+            Server=localhost,1433;User ID=sa;Password=${{ secrets.SA_PASSWORD }};
+            Encrypt=true;TrustServerCertificate=true;Database=master
+        run: dotnet test --configuration Release --no-build --filter TestCategory=Integration

@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Broker.cs" />
+    <Compile Include="DbConfig.cs" />
     <Compile Include="DbKonekcija.cs" />
+    <Compile Include="EnvLoader.cs" />
     <Compile Include="IBroker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transformator.cs" />
